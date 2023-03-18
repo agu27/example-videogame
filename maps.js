@@ -69,3 +69,15 @@ maps.push(`
   X-XXXXX-X-
   X-------XO
 `);
+maps.push(`
+  X---XXX-OX
+  --X--X--XX
+  -XXX---XXX
+  --XXXXX---
+  X--X----X-
+  XX---XXX--
+  XXXXXXX--X
+  X-------XX
+  X-XXXXXXXI
+  X---------
+`);

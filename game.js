@@ -16,6 +16,7 @@ let moveX = 0;
 let moveY = 10;
 let numMap = 1;
 let spanTime = document.querySelector('#time');
+let spanLevel = document.querySelector('#level');
 let startTime;
 let timePlayed;
 let timeInterval;
@@ -24,9 +25,11 @@ let levelTime = {
     2: 4,
     3: 7,
     4: 7,
-    5: 12
+    5: 13,
+    6: 11
 }
 spanTime.innerHTML = levelTime[1];
+spanLevel.innerHTML = '1';
 
 
 const giftPosition = {
@@ -59,6 +62,7 @@ function startGame() {
 }
 
 function setCanvasSize () {
+    localStorage.setItem('maxLevel', 1);
     if (window.innerHeight > window.innerWidth) {
         canvasSize = window.innerWidth * 0.8;
     } else {
@@ -138,17 +142,15 @@ function charDeath() {
 
 function nextLevel () {
     if (charStartY == giftPosition.y && charStartX == giftPosition.x) {
-        switch (numMap) {
-            case 1: initialTime = 8
-            case 2: initialTime = 6
-            case 3: initialTime = 5
-            case 4: initialTime = 3
-        }
         map = maps[numMap];
         game.clearRect(0, 0, canvasSize, canvasSize);
         startGame();
         numMap++;
         startTime = Date.now();
+    }
+    if (localStorage.getItem('maxLevel') <= numMap) {
+        localStorage.setItem('maxLevel', numMap);
+        spanLevel.innerHTML = localStorage.getItem('maxLevel');
     }
 }
 
